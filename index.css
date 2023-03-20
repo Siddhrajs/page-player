@@ -18,7 +18,7 @@ body {
 
 .scrollit {
   overflow-y: scroll;
-  height: 220px;
+  max-height: 210px;
 }
 
 #cvs {
