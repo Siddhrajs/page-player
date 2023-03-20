@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Player</title>
+    <meta charset="utf-8">
+    <link href="index.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="text-center">Page Player</h1>
+    <div class="container mt-3">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td id="date"></td>
+                <td class="last-element" id="checkRead"><label for="checkPage"><input name="checkPage" id="checkPage" type="checkbox"> READ</label></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td><input id="tutName" class="text" type="text" placeholder="ReadList Name"></td>
+                <td class="last-element"><button id="createTut" class="hovertext" data-hover="create new readlist">Create</button><button id="deleteTut" class="hovertext" data-hover="delete readlist">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>
+                    <select id="tutList">
+                        <option>No Readlist</option>
+                    </select>
+                </td>
+                <td id="siteTitle"></td>
+                <td class="last-element"><button id="addToTut" class="hovertext" data-hover="add to the readlist">+</button><button id="remFromTut" class="hovertext" data-hover="remove from the readlist">-</button><button id="clipbutton" class="hovertext" data-hover="copy to clipboard">&#x2398</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <canvas id="cvs"></canvas>
+        <div class="scrollit">
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <td>
+                        <ol id="selectedList">
+                            <li>Empty</li>
+                        </ol>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td><input id="readlist" class="text text-area" type="textarea" placeholder="paste readlist here"></td>
+                <td class="last-element"><button id="addReadlist" class="hovertext" data-hover="import readlist &#x2386 format: json">Import</button><div id="resetBtn" class="popup">Reset<span class="popuptext" id="myPopup"><p>&#x26A0 warning &#x26A0</p><p>THIS WILL DELETE ALL YOUR PROGRESS AND READLISTS!</p><p>click grey area to go back</p><button id="finalResetBtn">RESET</button></span>
+                </div></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
+
+

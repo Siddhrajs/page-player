@@ -1,0 +1,23 @@
+{
+    "name": "Page Player",
+    "version": "1.0.0",
+    "description": "Keep track of all pages read and can create readlists",
+    "manifest_version": 3,
+    "author": "Siddhraj Sisodiya",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Page Player"
+    },
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "storage",
+      "scripting"
+    ],
+    "host_permissions": [
+      "https://*/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    }
+}
