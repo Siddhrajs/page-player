@@ -1,5 +1,5 @@
 import { renderOptions, renderReadList, displayPopUp } from './view.js';
-import { changeData, removeTutorial, addInTutList, addTutorial, linkTutNSite, delinkTutNSite } from './model.js'
+import { changeData, removeTutorial, addInTutList, addTutorial, linkTutNSite, delinkTutNSite, factoryReset, storeData, copyToClipBoard } from './model.js'
 
 async function getCurrentTab() {
   let queryOptions = { active: true, lastFocusedWindow: true };
@@ -18,38 +18,6 @@ async function getCurrentTab() {
   if(data[tab.url])
     document.getElementById("checkPage").checked = true;
 }
-
-async function copyToClipBoard() {
-  const element = document.getElementById("tutList");
-  const tutorialName = element.options[element.selectedIndex].text;
-  const data = await chrome.storage.local.get(tutorialName);
-  const copyString = JSON.stringify(data);
-
-  navigator.clipboard.writeText(copyString)
-    .then(() => {
-    })
-    .catch((err) => {
-      console.error('Failed to copy string: ', err);
-    });
-}
-
-function storeData() {
-  const data = document.getElementById("readlist").value;
-  const obj = JSON.parse(data);
-
-  for(const key in obj)
-  {
-    addInTutList(key);
-  }
-  chrome.storage.local.set(obj);
-}
-
-function factoryReset() {
-  chrome.storage.local.clear().then(() => {
-    window.close();
-  });
-}
-
 
 console.log("INDEX SCRIPT STARTED");
 

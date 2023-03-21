@@ -126,5 +126,35 @@ async function delinkTutNSite() {
   chrome.storage.local.set(data);
   renderReadList();
 }
+async function copyToClipBoard() {
+  const element = document.getElementById("tutList");
+  const tutorialName = element.options[element.selectedIndex].text;
+  const data = await chrome.storage.local.get(tutorialName);
+  const copyString = JSON.stringify(data);
 
-export { changeData, removeTutorial, addInTutList, addTutorial, linkTutNSite, delinkTutNSite };
+  navigator.clipboard.writeText(copyString)
+    .then(() => {
+    })
+    .catch((err) => {
+      console.error('Failed to copy string: ', err);
+    });
+}
+
+function storeData() {
+  const data = document.getElementById("readlist").value;
+  const obj = JSON.parse(data);
+
+  for(const key in obj)
+  {
+    addInTutList(key);
+  }
+  chrome.storage.local.set(obj);
+}
+
+function factoryReset() {
+  chrome.storage.local.clear().then(() => {
+    window.close();
+  });
+}
+
+export { changeData, removeTutorial, addInTutList, addTutorial, linkTutNSite, delinkTutNSite, factoryReset, storeData, copyToClipBoard };
