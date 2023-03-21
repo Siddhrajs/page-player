@@ -7,8 +7,8 @@ async function checkRead(url) {
 		chrome.action.setIcon({path: "red-icon.png"});
 }
 
-async function initExtForTab(info) {
-	const tab = await chrome.tabs.get(info.tabIds[0]);
+async function initExtForTab(tabId) {
+	const tab = await chrome.tabs.get(tabId);
 	const url = tab.url;
 
 	await checkRead(url);
@@ -30,12 +30,22 @@ function checkScrollDownRead() {
 chrome.tabs.onHighlighted.addListener((highlightedInfo) => {
 	const tabId= highlightedInfo.tabIds[0];
 
-	initExtForTab(highlightedInfo);
+	initExtForTab(tabId);
     chrome.storage.local.onChanged.addListener((object) => {
-    	initExtForTab(highlightedInfo);
+    	initExtForTab(tabId);
     });
     chrome.scripting.executeScript({
      	target : {tabId : tabId, allFrames : true},
 		func : checkScrollDownRead,
     });
+});
+
+chrome.tabs.onUpdated.addListener((tabId,changeInfo,tab) => {
+	if(changeInfo.status=='complete' && tab.active)
+	{
+		initExtForTab(tabId);
+    	chrome.storage.local.onChanged.addListener((object) => {
+    		initExtForTab(tabId);
+    	});
+  }
 });

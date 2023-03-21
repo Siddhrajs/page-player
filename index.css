@@ -1,4 +1,7 @@
-/*convert this css to RWD and replace table in html with div*/
+* {
+  box-sizing: border-box;
+}
+
 .col-1 {width: 8.33%}
 .col-2 {width: 16.66%}
 .col-3 {width: 25%}
@@ -14,19 +17,25 @@
 
 [class*="col-"] {
   float: left;
-  padding: 5px;
+  padding: 0 1%;
+}
+
+.row {
+  padding: 0.5rem;
+}
+
+.row::after {
+  content: " ";
+  clear: both;
+  display: block;
+}
+
+p {
+  margin: 0;
 }
 
 .text-center {
   text-align: center;
-}
-
-.table {
-  width: inherit;
-}
-
-.last-element {
-  float: right;
 }
 
 body {
@@ -37,7 +46,7 @@ body {
 
 .scrollit {
   overflow-y: scroll;
-  max-height: 210px;
+  height: 180px;
 }
 
 #cvs {
@@ -47,11 +56,10 @@ body {
 }
 
 .container {
-  width: 450px;
+  width: 475px;
 }
 
 h1 {
-  width: 100%;
   background-color: #075E54;
   color: #fff;
   font-size: 24px;
@@ -65,25 +73,6 @@ h1 {
   background-color: #e6e6e6;
 }
 
-.table {
-  border: none;
-  border-collapse: collapse;
-  width: 100%;
-}
-.table td, .table th {
-  border: none;
-  padding: 0.75rem 1rem;
-  vertical-align: top;
-}
-.table-bordered td, .table-bordered th {
-  border: none;
-  border-bottom: 1px solid #e6e6e6;
-}
-.table-bordered tbody > tr:last-child > td {
-  border-bottom: none;
-}
-
-
 .text, button,#resetBtn {
   font-family: 'Segoe UI', sans-serif;
   font-size: 16px;
@@ -92,11 +81,11 @@ h1 {
   border: none;
   box-shadow: none;
   outline: none;
+  margin: 0.2vh 0;
 }
 button {
   background-color: #25D366;
   color: #fff;
-  margin-left: 0.5rem;
 }
 button:hover {
   background-color: #128C7E;
@@ -106,10 +95,6 @@ input[type="checkbox"] {
   margin-right: 0.5rem;
 }
 
-
-ol {
-  padding-left: 0.5;
-}
 li {
   margin: 0.5rem 0;
   font-size: 16px;
@@ -127,8 +112,8 @@ select {
   font-size: 16px;
   padding: 10px 20px;
   position: relative;
-  width: fit-content;
-  max-width: 125px;
+  width: 100%;
+  text-align: center;
 }
 
 select:before {
@@ -143,10 +128,6 @@ select:before {
   border-bottom: 8px solid transparent;
   border-left: 8px solid #dcf8c6;
   transform: translateY(-50%);
-}
-
-.last-element {
-	float: right;
 }
 
 a {
@@ -206,8 +187,8 @@ a {
 #resetBtn {
   background-color: #D32592;
   color: #fff;
-  margin-left: 0.5rem;
   text-align: center;
+  width: fit-content;
 }
 #resetBtn:hover {
   background-color: #8C1220;
